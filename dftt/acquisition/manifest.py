@@ -1,29 +1,19 @@
-# Evidence Manifest Generation and Export Following ISO/IEC 27037
+class ManifestEntry:
+    def __init__(self, identifier, description, acquisition_date):
+        self.identifier = identifier  # Unique identifier for the entry
+        self.description = description  # Description of the evidence
+        self.acquisition_date = acquisition_date  # Date when the evidence was acquired
 
 class EvidenceManifest:
     def __init__(self):
-        self.evidence_items = []
+        self.entries = []  # List to hold manifest entries
 
-    def add_item(self, item):
-        self.evidence_items.append(item)
+    def add_entry(self, entry):
+        if isinstance(entry, ManifestEntry):
+            self.entries.append(entry)
+        else:
+            raise ValueError('Entry must be a ManifestEntry instance')
 
-    def generate_manifest(self):
-        manifest = """Evidence Manifest
-Generated following ISO/IEC 27037
-
-Items:
-"""
-        for item in self.evidence_items:
-            manifest += f"- {item}\n"
-        return manifest
-
-    def export_manifest(self, file_path):
-        with open(file_path, 'w') as file:
-            file.write(self.generate_manifest())
-
-# Example usage
-if __name__ == '__main__':
-    manifest = EvidenceManifest()
-    manifest.add_item("Item 1: Digital Evidence")
-    manifest.add_item("Item 2: Physical Evidence")
-    manifest.export_manifest("evidence_manifest.txt")
+    def __repr__(self):
+        return f'EvidenceManifest(entries={self.entries})\n' + 
+                   '\n'.join(str(entry) for entry in self.entries)
