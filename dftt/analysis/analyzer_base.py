@@ -23,4 +23,4 @@ class AnalyzerBase:
         Generate a report of the analysis results.
         This method can be overridden to provide specific reporting.
         """
-        return f"Analysis report for data: {self.data}",
+        return f"Analysis report for data: {self.data}"

@@ -15,5 +15,5 @@ class EvidenceManifest:
             raise ValueError('Entry must be a ManifestEntry instance')
 
     def __repr__(self):
-        return f'EvidenceManifest(entries={self.entries})\n' + 
-                   '\n'.join(str(entry) for entry in self.entries)
+        return (f'EvidenceManifest(entries={self.entries})\n' +
+                '\n'.join(str(entry) for entry in self.entries))
